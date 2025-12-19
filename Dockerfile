@@ -7,11 +7,12 @@ WORKDIR /app
 COPY pyproject.toml ./
 COPY src/ ./src/
 COPY .git/ ./.git/
+COPY app.py ./
 
-RUN pip install --no-cache-dir -e .
+RUN pip install --no-cache-dir -e . && pip install --no-cache-dir aiohttp
 
 ENV GEMINI_COOKIE_PATH=/data/gemini_webapi
 
 EXPOSE 8000
 
-CMD ["python", "-m", "gemini_webapi"]
+CMD ["python", "app.py"]
