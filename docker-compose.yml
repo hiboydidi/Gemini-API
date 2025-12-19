@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  gemini-api:
+    image: python:3.11-slim
+    container_name: gemini-api
+    working_dir: /app
+    environment:
+      - GEMINI_COOKIE_PATH=/tmp/gemini_webapi
+      - GEMINI_COOKIE_1PSID=${GEMINI_COOKIE_1PSID}
+      - GEMINI_COOKIE_1PSIDTS=${GEMINI_COOKIE_1PSIDTS}
+    volumes:
+      - .:/app
+      - ./gemini_cookies:/tmp/gemini_webapi
+    command: >
+      bash -c "pip install -e . && python your_app.py"
+    ports:
+      - "8000:8000"
+    restart: unless-stopped

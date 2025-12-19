@@ -202,3 +202,7 @@ Temporary Items
 
 # Temporary files
 .temp/
+
+# Gemini WebAPI cookies (持久化存储)
+gemini_cookies/
+.env
